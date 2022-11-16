@@ -1,20 +1,36 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser } = useContext(AuthContext)
+    const { createUser, updateUser } = useContext(AuthContext);
+    const [signUpError, setSignUpError] = useState('');
+    const navigate = useNavigate();
 
     const handleSignUp = data => {
         console.log(data)
+        setSignUpError('');
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                console.log(user);
+                toast.success('User created successfully')
+                const userInfo = {
+                    displayName: data.name
+                }
+                updateUser(userInfo)
+                    .then(() => {
+                        navigate('/')
+                    })
+                    .catch(err => console.log(err));
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                console.error(error)
+                setSignUpError(error.message)
+            })
     }
 
     return (
@@ -47,6 +63,7 @@ const SignUp = () => {
                         {errors.password && <p className='text-red-600'>{errors.password.message}</p>}
                     </div>
                     <input className='btn btn-accent my-3 w-full max-w-xs' value='Sign Up' type="submit" />
+                    {signUpError && <p className='text-red-600'>{signUpError}</p>}
                 </form>
                 <p>Already have an account. Please <Link to='/login' className='text-secondary'>Login</Link> </p>
                 <div className="divider">OR</div>
