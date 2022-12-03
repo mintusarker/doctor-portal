@@ -5,7 +5,7 @@ import { AuthContext } from '../../../context/AuthProvider';
 
 const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
     // treatment is an appointment option just different name
-    const { name: treatmentName, slots } = treatment;
+    const { name: treatmentName, slots, price } = treatment;
     const date = format(selectedDate, 'PP');
     const { user } = useContext(AuthContext);
 
@@ -24,6 +24,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
             slot,
             email,
             phone,
+            price
         }
         // TODO: send data to the server
         // and data is saved then close the modal
@@ -43,7 +44,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
                     toast.success('Booking confirmed');
                     refetch();
                 }
-                else{
+                else {
                     toast.error(data.message)
                 }
 

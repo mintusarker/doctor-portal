@@ -30,7 +30,7 @@ const ManageDoctors = () => {
         }
     });
 
-    //delete doctors
+    //delete doctors handler
     const handleDeleteDoctor = doctor => {
         fetch(`http://localhost:5000/doctors/${doctor._id}`, {
             method: 'DELETE',
@@ -99,7 +99,6 @@ const ManageDoctors = () => {
                     closeModal={closeModal}
 
                 >
-
                 </ConfirmationModal>
             }
         </div>
