@@ -29,7 +29,7 @@ const AvailableAppointment = ({ selectedDate }) => {
 
             <div className='gap-6 my-10 px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6'>
                 {
-                    appointmentOptions.map(option => <AppointmentOption
+                    appointmentOptions?.map(option => <AppointmentOption
                         key={option._id}
                         appointmentOption={option}
                         setTreatment={setTreatment}
