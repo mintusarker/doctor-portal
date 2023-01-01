@@ -7,7 +7,7 @@ const MyAppointment = () => {
 
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/bookings?email=${user.email}`
+    const url = `https://doctors-portal-server-beta-khaki.vercel.app/bookings?email=${user.email}`
 
     const { data: bookings = [] } = useQuery({
         queryKey: ['bookings', user?.email],
@@ -50,7 +50,7 @@ const MyAppointment = () => {
                                 <td>{booking?.slot}</td>
                                 <td>
                                     {
-                                        booking?.price && !booking.paid && 
+                                        booking?.price && !booking.paid &&
                                         <Link to={`/dashboard/payment/${booking._id}`}><button className='btn btn-primary btn-sm'>Pay</button></Link>
                                     }
                                     {

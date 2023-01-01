@@ -1,3 +1,8 @@
+LIve Link : [https://doctors-portal-612ca.web.app/](https://doctors-portal-612ca.web.app/)
+
+Admin access: Email: <kopila22@pata.com>
+Pass: <123456M@>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
